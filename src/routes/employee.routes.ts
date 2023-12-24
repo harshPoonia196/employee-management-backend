@@ -10,7 +10,7 @@ const EmployeeRoute = (): Routes => {
 
   const initializeRoutes = () => {
     router.post(`${path}/create-employee`, createEmployee);
-    router.get(`${path}/get-all-employees/:search?`, getAllEmployees);
+    router.post(`${path}/get-all-employees`, getAllEmployees);
   };
 
   initializeRoutes();

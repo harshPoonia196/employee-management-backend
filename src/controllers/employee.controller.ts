@@ -19,7 +19,7 @@ function EmployeeController() {
 
   async function getAllEmployees(req: Request, res: Response) {
     try {
-      const { search } = req.params;
+      const { search } = req.body;
       const employees = await getAllEmployeesServices(search);
       res
         .status(200)
