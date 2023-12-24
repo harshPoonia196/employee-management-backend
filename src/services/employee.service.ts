@@ -8,9 +8,8 @@ function EmployeeService() {
   }
 
   async function getAllEmployeesServices(search?: string) {
-    const data = search ? { firstName: { $regex: search } } : {};
+    const data = search ? { firstName: { $regex: search, $options: "i" } } : {};
     const employees = await EmployeeModel.find(data);
-
     return employees;
   }
 
