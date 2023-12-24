@@ -4,12 +4,11 @@ import EmployeeModel from "../models/employee.model";
 function EmployeeService() {
   async function createEmployeeService(data: IEmployee) {
     const employee = await EmployeeModel.create(data);
-    console.log(" employee ===========>", employee);
     return employee;
   }
 
   async function getAllEmployeesServices(search?: string) {
-    const data = search ? { firstName: search } : {};
+    const data = search ? { firstName: { $regex: search } } : {};
     const employees = await EmployeeModel.find(data);
 
     return employees;
