@@ -1,8 +1,13 @@
+import { IEmployee } from "@/interfaces/employee.interface";
 import EmployeeService from "../services/employee.service";
 import { Request, Response } from "express";
 
 function EmployeeController() {
-  const { createEmployeeService, getAllEmployeesServices } = EmployeeService();
+  const {
+    createEmployeeService,
+    getAllEmployeesServices,
+    updateEmployeeServices,
+  } = EmployeeService();
 
   async function createEmployee(req: Request, res: Response) {
     try {
@@ -29,7 +34,20 @@ function EmployeeController() {
     }
   }
 
-  return { createEmployee, getAllEmployees };
+  async function updateEmployee(req: Request, res: Response) {
+    try {
+      const data: IEmployee = req.body;
+      console.log(" data fromm updateEmployee ===========>", data);
+      const employee = await updateEmployeeServices(data);
+      res
+        .status(200)
+        .json({ employee, message: "Employees updated successfully" });
+    } catch (err) {
+      console.log("err getAllEmployees ===========>", err);
+    }
+  }
+
+  return { createEmployee, getAllEmployees, updateEmployee };
 }
 
 export default EmployeeController;

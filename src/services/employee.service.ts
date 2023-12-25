@@ -13,6 +13,20 @@ function EmployeeService() {
     return employees;
   }
 
-  return { createEmployeeService, getAllEmployeesServices };
+  async function updateEmployeeServices(data: IEmployee) {
+    const { _id } = data;
+    const employees = await EmployeeModel.findByIdAndUpdate(
+      _id,
+      { ...data },
+      { new: true }
+    );
+    return employees;
+  }
+
+  return {
+    createEmployeeService,
+    getAllEmployeesServices,
+    updateEmployeeServices,
+  };
 }
 export default EmployeeService;

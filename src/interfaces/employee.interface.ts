@@ -8,6 +8,7 @@ export interface IEmployee {
   street: string;
   city: string;
   state: string;
+  _id: string;
 }
 
 export interface DataStoredInToken {
