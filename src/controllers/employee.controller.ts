@@ -7,6 +7,7 @@ function EmployeeController() {
     createEmployeeService,
     getAllEmployeesServices,
     updateEmployeeServices,
+    deleteEmployeeServices,
   } = EmployeeService();
 
   async function createEmployee(req: Request, res: Response) {
@@ -47,7 +48,19 @@ function EmployeeController() {
     }
   }
 
-  return { createEmployee, getAllEmployees, updateEmployee };
+  async function deleteEmployee(req: Request, res: Response) {
+    try {
+      const { _id } = req.params;
+      const employee = await deleteEmployeeServices(_id);
+      res
+        .status(200)
+        .json({ employee, message: "Employee deleted successfully" });
+    } catch (err) {
+      console.log("err getAllEmployees ===========>", err);
+    }
+  }
+
+  return { createEmployee, getAllEmployees, updateEmployee, deleteEmployee };
 }
 
 export default EmployeeController;

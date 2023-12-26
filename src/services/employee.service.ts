@@ -23,10 +23,16 @@ function EmployeeService() {
     return employees;
   }
 
+  async function deleteEmployeeServices(_id: string) {
+    const employee = await EmployeeModel.findByIdAndDelete(_id);
+    return employee;
+  }
+
   return {
     createEmployeeService,
     getAllEmployeesServices,
     updateEmployeeServices,
+    deleteEmployeeServices,
   };
 }
 export default EmployeeService;
