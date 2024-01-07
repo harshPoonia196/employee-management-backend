@@ -2,6 +2,11 @@ import { Router } from "express";
 
 import { Routes } from "@/interfaces/routes.interface";
 import EmployeeController from "../controllers/employee.controller";
+import uploadImageMiddleWare, {
+  multerRef,
+} from "../middlewares/uploadImage.middleware";
+
+const cpUpload = multerRef.single("image");
 
 const EmployeeRoute = (): Routes => {
   const path = "/employee";
@@ -10,7 +15,12 @@ const EmployeeRoute = (): Routes => {
     EmployeeController();
 
   const initializeRoutes = () => {
-    router.post(`${path}/create-employee`, createEmployee);
+    router.post(
+      `${path}/create-employee`,
+      cpUpload,
+      uploadImageMiddleWare,
+      createEmployee
+    );
     router.post(`${path}/get-all-employees`, getAllEmployees);
     router.post(`${path}/update-employee`, updateEmployee);
     router.delete(`${path}/delete-employee/:_id`, deleteEmployee);

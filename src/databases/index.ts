@@ -3,7 +3,8 @@ import { DB_URL } from "../config";
 export const dbConnection = {
   url: DB_URL,
   options: {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
+    //! deprecated options
+    // useNewUrlParser: true,
+    // useUnifiedTopology: true,
   },
 };

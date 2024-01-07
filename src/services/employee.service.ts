@@ -3,6 +3,7 @@ import EmployeeModel from "../models/employee.model";
 
 function EmployeeService() {
   async function createEmployeeService(data: IEmployee) {
+    console.log("data ===========>", data);
     const employee = await EmployeeModel.create(data);
     return employee;
   }

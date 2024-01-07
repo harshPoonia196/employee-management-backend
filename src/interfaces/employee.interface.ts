@@ -9,6 +9,8 @@ export interface IEmployee {
   city: string;
   state: string;
   _id: string;
+  profile_pic: string;
+  company_id: string;
 }
 
 export interface DataStoredInToken {

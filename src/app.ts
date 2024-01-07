@@ -9,6 +9,7 @@ import responseTime from "response-time";
 import bodyParser from "body-parser";
 import { PORT } from "./config";
 import { dbConnection } from "./databases";
+import chalk from "chalk";
 const expressListEndpoints = require("express-list-endpoints");
 
 const app = (routes: Routes[]) => {
@@ -35,7 +36,8 @@ const app = (routes: Routes[]) => {
     });
   };
 
-  console.log(expressListEndpoints(app));
+  // ! to see all endPoints of the server
+  // console.log(expressListEndpoints(app));
 
   const getServer = () => app;
 
@@ -46,7 +48,7 @@ const app = (routes: Routes[]) => {
 
   function initializeMiddlewares() {
     app.use(cors({ origin: "*", credentials: true }));
-    app.use(bodyParser.json());
+    app.use(bodyParser.json({ limit: "5mb" }));
     app.use(bodyParser.urlencoded({ extended: true }));
     app.use(hpp());
     app.use(helmet());
