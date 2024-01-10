@@ -38,7 +38,6 @@ function EmployeeController() {
   async function updateEmployee(req: Request, res: Response) {
     try {
       const data: IEmployee = req.body;
-      console.log(" data fromm updateEmployee ===========>", data);
       const employee = await updateEmployeeServices(data);
       res
         .status(200)

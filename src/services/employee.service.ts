@@ -16,6 +16,7 @@ function EmployeeService() {
 
   async function updateEmployeeServices(data: IEmployee) {
     const { _id } = data;
+    console.log("data ===========>", data);
     const employees = await EmployeeModel.findByIdAndUpdate(
       _id,
       { ...data },

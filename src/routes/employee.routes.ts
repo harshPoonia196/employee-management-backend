@@ -21,8 +21,13 @@ const EmployeeRoute = (): Routes => {
       uploadImageMiddleWare,
       createEmployee
     );
+    router.post(
+      `${path}/update-employee`,
+      cpUpload,
+      uploadImageMiddleWare,
+      updateEmployee
+    );
     router.post(`${path}/get-all-employees`, getAllEmployees);
-    router.post(`${path}/update-employee`, updateEmployee);
     router.delete(`${path}/delete-employee/:_id`, deleteEmployee);
   };
 

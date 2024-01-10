@@ -20,20 +20,23 @@ export const multerRef = multer({
 
 const uploadImageMiddleWare = (req: any, res: Response, next: NextFunction) => {
   const { file } = req;
-  return new Promise((resolve, reject) => {
-    cloudinary.uploader
-      .upload_stream({ format: "png" }, (err, res) => {
-        if (err) {
-          console.log(err);
-          reject(err);
-        } else {
-          req.body.profile_pic = res.url;
-          resolve(res.url);
-          next();
-        }
-      })
-      .end(file?.buffer);
-  });
+  if (file) {
+    return new Promise((resolve, reject) => {
+      cloudinary.uploader
+        .upload_stream({ format: "png" }, (err, res) => {
+          if (err) {
+            console.log(err);
+            reject(err);
+          } else {
+            req.body.profile_pic = res.url;
+            resolve(res.url);
+            next();
+          }
+        })
+        .end(file?.buffer);
+    });
+  }
+  next();
 };
 
 export default uploadImageMiddleWare;
